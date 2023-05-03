@@ -32,6 +32,4 @@ The application uses the Microsoft Graph API under the hood, and refreshes the a
 
 ---
 
-## Made with ❤️
-
-This project was made with love by its contributors.
+Made with ❤️
