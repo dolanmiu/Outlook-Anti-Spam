@@ -8,7 +8,11 @@ const job = new CronJob(
   // every few seconds
   "*/10 * * * * *",
   async () => {
-    await jobTick();
+    try {
+      await jobTick();
+    } catch (e) {
+      console.log("Error in job tick");
+    }
   },
   null,
   false,
