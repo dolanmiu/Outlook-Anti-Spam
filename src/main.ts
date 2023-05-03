@@ -22,7 +22,11 @@ const refreshToken = new CronJob(
   // every 50 minutes
   "*/50 * * * *",
   async () => {
-    await refreshAccessToken();
+    try {
+      await refreshAccessToken();
+    } catch (e) {
+      console.log("Error in getting refresh token");
+    }
   },
   null,
   false,

@@ -14,7 +14,7 @@ export const refreshAccessToken = async (): Promise<string> => {
   }>({
     method: "POST",
     url: "https://login.microsoftonline.com/common/oauth2/v2.0/token",
-    headers: {
+    data: {
       client_id: CLIENT_ID,
       scope: AUTH_SCOPE.join(" "),
       refresh_token: authDetails.refreshToken,
