@@ -5,8 +5,8 @@ import { startServer } from "./server.js";
 import { refreshAccessToken } from "./outlook-api/refresh-access-token.js";
 
 const job = new CronJob(
-  // every 5 seconds
-  "*/5 * * * * *",
+  // every few seconds
+  "*/10 * * * * *",
   async () => {
     await jobTick();
   },
