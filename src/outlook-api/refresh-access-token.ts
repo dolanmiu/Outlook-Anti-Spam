@@ -1,4 +1,4 @@
-import { getAuthDetails } from "../auth-details.js";
+import { getAuthDetails, setAccessToken } from "../auth-details.js";
 import refresh from "passport-oauth2-refresh";
 
 export const refreshAccessToken = async (): Promise<string> => {
@@ -17,6 +17,7 @@ export const refreshAccessToken = async (): Promise<string> => {
         }
         console.log("Refreshed access token");
 
+        setAccessToken(accessToken);
         resolve(accessToken);
       },
     );
