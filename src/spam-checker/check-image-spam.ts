@@ -39,6 +39,7 @@ const urlBlackList = (mail: Mail) => {
     mail.body.content.includes("https://t.co/") ||
     mail.body.content.includes("maglit.me") ||
     mail.body.content.includes("zupimages.net") ||
-    mail.body.content.includes("img.mailinblue.com")
+    mail.body.content.includes("img.mailinblue.com") ||
+    mail.body.content.includes("berkeley.us14.list-manage.com")
   );
 };
