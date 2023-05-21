@@ -1,18 +1,7 @@
 import { Mail } from "../outlook-api/types/mail-type.js";
 
 export const isImageSpamMail = async (mail: Mail) => {
-  if (
-    addressFromBlackList(mail) &&
-    mail.body.content.includes("https://t.co/")
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-export const magLitSpam = async (mail: Mail) => {
-  if (addressFromBlackList(mail) && mail.body.content.includes("maglit.me")) {
+  if (addressFromBlackList(mail) && urlBlackList(mail)) {
     return true;
   } else {
     return false;
@@ -42,5 +31,13 @@ const addressFromBlackList = (mail: Mail) => {
   return (
     mail.from.emailAddress.address.endsWith("@gmail.com") ||
     mail.from.emailAddress.address.endsWith("@yahoo.com")
+  );
+};
+
+const urlBlackList = (mail: Mail) => {
+  return (
+    mail.body.content.includes("https://t.co/") ||
+    mail.body.content.includes("maglit.me") ||
+    mail.body.content.includes("zupimages.net")
   );
 };
