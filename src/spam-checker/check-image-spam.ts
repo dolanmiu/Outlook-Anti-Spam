@@ -2,7 +2,7 @@ import { Mail } from "../outlook-api/types/mail-type.js";
 
 export const isImageSpamMail = async (mail: Mail) => {
   if (
-    mail.from.emailAddress.address.endsWith("@gmail.com") &&
+    addressFromBlackList(mail) &&
     mail.body.content.includes("https://t.co/")
   ) {
     return true;
@@ -12,10 +12,7 @@ export const isImageSpamMail = async (mail: Mail) => {
 };
 
 export const magLitSpam = async (mail: Mail) => {
-  if (
-    mail.from.emailAddress.address.endsWith("@gmail.com") &&
-    mail.body.content.includes("maglit.me")
-  ) {
+  if (addressFromBlackList(mail) && mail.body.content.includes("maglit.me")) {
     return true;
   } else {
     return false;
@@ -24,7 +21,7 @@ export const magLitSpam = async (mail: Mail) => {
 
 export const inlineImageSpam = async (mail: Mail) => {
   // Checks if there are massive images in the content
-  if (mail.from.emailAddress.address.endsWith("@gmail.com")) {
+  if (addressFromBlackList(mail)) {
     const matches = mail.body.content.matchAll(/image:url\((.+)\)/g);
 
     for (const match of matches) {
@@ -39,4 +36,11 @@ export const inlineImageSpam = async (mail: Mail) => {
       }
     }
   }
+};
+
+const addressFromBlackList = (mail: Mail) => {
+  return (
+    mail.from.emailAddress.address.endsWith("@gmail.com") ||
+    mail.from.emailAddress.address.endsWith("@yahoo.com")
+  );
 };
