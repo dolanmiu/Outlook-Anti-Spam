@@ -10,7 +10,8 @@
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "prettier \"src/**/*.ts\"",
-    "prettier:fix": "npm run prettier -- --write"
+    "prettier:fix": "npm run prettier -- --write",
+    "get-emails": "ts-node --esm src/get-emails.ts"
   },
   "author": "",
   "license": "ISC",

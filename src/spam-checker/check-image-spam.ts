@@ -35,6 +35,13 @@ export const inlineImageSpam = async (mail: Mail) => {
   }
 };
 
+export const dashSpam = async (mail: Mail) => {
+  return (
+    mail.bodyPreview.includes("-------------------------") ||
+    mail.bodyPreview.includes("__________________")
+  );
+};
+
 const addressFromBlackList = (mail: Mail) => {
   return (
     mail.from.emailAddress.address.endsWith("@gmail.com") ||
