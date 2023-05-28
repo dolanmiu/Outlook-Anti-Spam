@@ -10,9 +10,7 @@ const job = new CronJob(
   async () => {
     try {
       await jobTick();
-    } catch (e) {
-      console.log("Error in job tick");
-    }
+    } catch (e) {}
   },
   null,
   false,
