@@ -1,22 +1,23 @@
 import { Mail } from "../outlook-api/types/mail-type.js";
+import { SpamFilterType } from "./types.js";
 
-export const isImageSpamMail = async (mail: Mail) => {
+export const isImageSpamMail = (mail: Mail): SpamFilterType | undefined => {
   if (addressFromBlackList(mail) && urlBlackList(mail)) {
-    return true;
+    return SpamFilterType.Image;
   } else {
-    return false;
+    return;
   }
 };
 
-export const isTextSpamMail = async (mail: Mail) => {
+export const isTextSpamMail = (mail: Mail): SpamFilterType | undefined => {
   if (addressFromBlackList(mail) && textBlackList(mail)) {
-    return true;
+    return SpamFilterType.Text;
   } else {
-    return false;
+    return;
   }
 };
 
-export const inlineImageSpam = async (mail: Mail) => {
+export const inlineImageSpam = (mail: Mail): SpamFilterType | undefined => {
   // Checks if there are massive images in the content
   if (addressFromBlackList(mail)) {
     const matches = mail.body.content.matchAll(/image:url\((.+)\)/g);
@@ -27,19 +28,23 @@ export const inlineImageSpam = async (mail: Mail) => {
       }
 
       if (match[1].length > 200000) {
-        return true;
+        return SpamFilterType.InlineImage;
       } else {
-        return false;
+        return;
       }
     }
   }
 };
 
-export const dashSpam = async (mail: Mail) => {
-  return (
+export const dashSpam = (mail: Mail): SpamFilterType | undefined => {
+  if (
     mail.bodyPreview.includes("-------------------------") ||
     mail.bodyPreview.includes("__________________")
-  );
+  ) {
+    return SpamFilterType.Dash;
+  } else {
+    return;
+  }
 };
 
 const addressFromBlackList = (mail: Mail) => {

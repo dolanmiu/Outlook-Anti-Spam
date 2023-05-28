@@ -18,14 +18,15 @@ export const jobTick = async () => {
   const mails = await getEmails(authDetails);
 
   for (const mail of mails.value) {
-    if (
-      (await isImageSpamMail(mail)) ||
-      (await inlineImageSpam(mail)) ||
-      (await isTextSpamMail(mail)) ||
-      (await dashSpam(mail))
-    ) {
+    const reason =
+      isImageSpamMail(mail) ||
+      inlineImageSpam(mail) ||
+      isTextSpamMail(mail) ||
+      dashSpam(mail);
+    if (reason) {
       moveEmail(authDetails, mail, "junkemail");
       console.log("Moved spam mail to junk email:", mail.subject);
+      console.log("Reason:", reason);
     }
   }
 };
