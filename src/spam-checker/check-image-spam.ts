@@ -47,6 +47,14 @@ export const dashSpam = (mail: Mail): SpamFilterType | undefined => {
   }
 };
 
+export const singularDashSpam = (mail: Mail): SpamFilterType | undefined => {
+  if (mail.bodyPreview === "-") {
+    return SpamFilterType.SingularDash;
+  } else {
+    return;
+  }
+};
+
 const addressFromBlackList = (mail: Mail) => {
   return (
     mail.from.emailAddress.address.endsWith("@gmail.com") ||

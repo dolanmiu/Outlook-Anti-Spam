@@ -3,4 +3,5 @@ export enum SpamFilterType {
   Text = "text",
   InlineImage = "inline-image",
   Dash = "dash",
+  SingularDash = "singular-dash",
 }
