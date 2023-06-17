@@ -4,6 +4,8 @@ import { createServer } from "http";
 import passport from "passport";
 import { Strategy as MicrosoftStrategy } from "passport-microsoft";
 import refresh from "passport-oauth2-refresh";
+import fs from "fs";
+
 import { setAuthDetails } from "./auth-details.js";
 import {
   AUTH_SCOPE,
@@ -74,6 +76,16 @@ app.get(
     res.redirect("/");
   },
 );
+
+app.get("/emails", (_, res) => {
+  fs.readFile("./latest_emails.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    res.status(200).json(JSON.parse(data));
+  });
+});
 
 app.use("/", express.static("../spa/dist/spa"));
 
