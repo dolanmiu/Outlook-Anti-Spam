@@ -53,10 +53,6 @@ app.use(
 );
 app.use(passport.initialize());
 
-app.get("/", (_, res) => {
-  res.send("Hello World!");
-});
-
 app.get("/login", function (req, res, next) {
   passport.authenticate("microsoft", (err: Error, user: any, info: any) => {
     if (err) {
@@ -78,6 +74,8 @@ app.get(
     res.redirect("/");
   },
 );
+
+app.use("/", express.static("../spa/dist/spa"));
 
 export const startServer = async () => {
   httpServer.listen(3000, () => {
