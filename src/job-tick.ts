@@ -6,6 +6,7 @@ import {
   isImageSpamMail,
   isTextSpamMail,
   singularDashSpam,
+  tickSpam,
 } from "./spam-checker/check-image-spam.js";
 import { moveEmail } from "./outlook-api/move-email.js";
 
@@ -24,6 +25,7 @@ export const jobTick = async () => {
       inlineImageSpam(mail) ||
       isTextSpamMail(mail) ||
       dashSpam(mail) ||
+      tickSpam(mail) ||
       singularDashSpam(mail);
     if (reason) {
       moveEmail(authDetails, mail, "junkemail");

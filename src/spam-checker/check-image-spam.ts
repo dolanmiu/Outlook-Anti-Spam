@@ -47,6 +47,20 @@ export const dashSpam = (mail: Mail): SpamFilterType | undefined => {
   }
 };
 
+export const tickSpam = (mail: Mail): SpamFilterType | undefined => {
+  if (
+    mail.subject.includes("✅") ||
+    mail.subject.includes("✔️") ||
+    mail.subject.includes("✓") ||
+    mail.subject.includes("☑️") ||
+    mail.subject.includes("☑")
+  ) {
+    return SpamFilterType.Dash;
+  } else {
+    return;
+  }
+};
+
 export const singularDashSpam = (mail: Mail): SpamFilterType | undefined => {
   if (mail.bodyPreview === "-") {
     return SpamFilterType.SingularDash;
@@ -70,7 +84,9 @@ const urlBlackList = (mail: Mail) => {
     mail.body.content.includes("zupimages.net") ||
     mail.body.content.includes("img.mailinblue.com") ||
     mail.body.content.includes("berkeley.us14.list-manage.com") ||
-    mail.body.content.includes("imgbox.com")
+    mail.body.content.includes("imgbox.com") ||
+    mail.body.content.includes("twimg.com") ||
+    mail.body.content.includes("mycdn.me")
   );
 };
 
