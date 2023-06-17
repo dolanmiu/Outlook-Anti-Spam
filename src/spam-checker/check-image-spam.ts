@@ -38,8 +38,8 @@ export const inlineImageSpam = (mail: Mail): SpamFilterType | undefined => {
 
 export const dashSpam = (mail: Mail): SpamFilterType | undefined => {
   if (
-    mail.bodyPreview.includes("-------------------------") ||
-    mail.bodyPreview.includes("__________________")
+    mail.bodyPreview.includes("--------") ||
+    mail.bodyPreview.includes("________")
   ) {
     return SpamFilterType.Dash;
   } else {
@@ -69,7 +69,8 @@ const urlBlackList = (mail: Mail) => {
     mail.body.content.includes("maglit.me") ||
     mail.body.content.includes("zupimages.net") ||
     mail.body.content.includes("img.mailinblue.com") ||
-    mail.body.content.includes("berkeley.us14.list-manage.com")
+    mail.body.content.includes("berkeley.us14.list-manage.com") ||
+    mail.body.content.includes("imgbox.com")
   );
 };
 
