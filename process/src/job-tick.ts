@@ -9,6 +9,7 @@ import {
   tickSpam,
 } from "./spam-checker/check-image-spam.js";
 import { moveEmail } from "./outlook-api/move-email.js";
+import { deserialize, getNewMail, serialize } from "./serializer.js";
 
 export const jobTick = async () => {
   const authDetails = getAuthDetails();
@@ -19,7 +20,9 @@ export const jobTick = async () => {
 
   const mails = await getEmails(authDetails);
 
-  for (const mail of mails.value) {
+  const newMail = getNewMail(deserialize(), mails.value);
+
+  for (const mail of newMail) {
     const reason =
       isImageSpamMail(mail) ||
       inlineImageSpam(mail) ||
@@ -34,4 +37,6 @@ export const jobTick = async () => {
       console.log("Full mail:", mail);
     }
   }
+
+  serialize(mails.value);
 };
