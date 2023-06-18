@@ -7,13 +7,16 @@ import { EmailsService } from './emails.service';
   selector: 'app-emails',
   standalone: true,
   imports: [CommonModule],
-  template: `<div *ngIf="emails$ | async as emails">
-    <h2 class="text-2xl font-bold underline">Emails</h2>
-    <div class="border-black border shadow-md" *ngFor="let email of emails">
-      <h3 class="text-xl font-bold underline">{{ email.subject }}</h3>
-      <p>{{ email.body }}</p>
+  template: `
+    <div class="flex flex-col gap-8" *ngIf="emails$ | async as emails">
+      <h2 class="text-2xl font-bold underline">Emails</h2>
+      <div class="border-black border shadow-lg" *ngFor="let email of emails">
+        <h3 class="text-xl font-bold underline">{{ email.subject }}</h3>
+        <div>Type of email: {{ email.body.contentType }}</div>
+        <div [innerHTML]="email.body.content"></div>
+      </div>
     </div>
-  </div>`,
+  `,
   styles: [],
 })
 export class EmailsComponent {

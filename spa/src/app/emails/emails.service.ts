@@ -9,5 +9,5 @@ import { Mail } from '@shared-types/mail-type';
 export class EmailsService {
   private readonly httpClient = inject(HttpClient);
 
-  public readonly emails$ = this.httpClient.get<Mail[]>('/emails');
+  public readonly emails$ = this.httpClient.get<Mail[]>('http://localhost:3000/emails');
 }

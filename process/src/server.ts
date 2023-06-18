@@ -5,6 +5,7 @@ import passport from "passport";
 import { Strategy as MicrosoftStrategy } from "passport-microsoft";
 import refresh from "passport-oauth2-refresh";
 import fs from "fs";
+import cors from "cors";
 
 import { setAuthDetails } from "./auth-details.js";
 import {
@@ -15,6 +16,7 @@ import {
 
 const app = express();
 const httpServer = createServer(app);
+app.use(cors());
 
 const strategy = new MicrosoftStrategy(
   {
