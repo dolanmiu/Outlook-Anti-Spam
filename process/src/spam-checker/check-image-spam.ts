@@ -53,9 +53,30 @@ export const tickSpam = (mail: Mail): SpamFilterType | undefined => {
     mail.subject.includes("✔️") ||
     mail.subject.includes("✓") ||
     mail.subject.includes("☑️") ||
-    mail.subject.includes("☑")
+    mail.subject.includes("☑") ||
+    mail.sender.emailAddress.name.includes("✅") ||
+    mail.sender.emailAddress.name.includes("✔️") ||
+    mail.sender.emailAddress.name.includes("✓") ||
+    mail.sender.emailAddress.name.includes("☑️") ||
+    mail.sender.emailAddress.name.includes("☑") ||
+    mail.from.emailAddress.name.includes("✅") ||
+    mail.from.emailAddress.name.includes("✔️") ||
+    mail.from.emailAddress.name.includes("✓") ||
+    mail.from.emailAddress.name.includes("☑️") ||
+    mail.from.emailAddress.name.includes("☑")
   ) {
     return SpamFilterType.Dash;
+  } else {
+    return;
+  }
+};
+
+export const fromMyselfSpam = (mail: Mail): SpamFilterType | undefined => {
+  if (
+    mail.sender.emailAddress.name.includes("Dolanmiu") ||
+    mail.from.emailAddress.name.includes("Dolanmiu")
+  ) {
+    return SpamFilterType.FromMyself;
   } else {
     return;
   }

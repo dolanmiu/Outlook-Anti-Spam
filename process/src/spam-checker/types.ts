@@ -4,4 +4,5 @@ export enum SpamFilterType {
   InlineImage = "inline-image",
   Dash = "dash",
   SingularDash = "singular-dash",
+  FromMyself = "from-myself",
 }

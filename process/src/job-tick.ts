@@ -2,6 +2,7 @@ import { getEmails } from "./outlook-api/get-emails.js";
 import { getAuthDetails } from "./auth-details.js";
 import {
   dashSpam,
+  fromMyselfSpam,
   inlineImageSpam,
   isImageSpamMail,
   isTextSpamMail,
@@ -29,7 +30,8 @@ export const jobTick = async () => {
       isTextSpamMail(mail) ||
       dashSpam(mail) ||
       tickSpam(mail) ||
-      singularDashSpam(mail);
+      singularDashSpam(mail) ||
+      fromMyselfSpam(mail);
     if (reason) {
       moveEmail(authDetails, mail, "junkemail");
       console.log("Moved spam mail to junk email:", mail.subject);
@@ -38,5 +40,7 @@ export const jobTick = async () => {
     }
   }
 
-  serialize(mails.value);
+  if (newMail.length > 0) {
+    serialize(mails.value);
+  }
 };

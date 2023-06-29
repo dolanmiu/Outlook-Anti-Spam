@@ -27,7 +27,7 @@ const jobTick = async () => {
 
   const mails = await getEmails(authDetails);
 
-  console.log(mails);
+  console.log(JSON.stringify(mails.value.slice(0, 4), null, 2));
 
   job.stop();
 };
