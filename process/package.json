@@ -8,7 +8,7 @@
     "start": "ts-node --esm src/main.ts",
     "start:js": "npm run build && node dist/main.js",
     "build": "tsc -p .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "prettier": "prettier \"src/**/*.ts\"",
     "prettier:fix": "npm run prettier -- --write",
     "get-emails": "ts-node --esm src/get-emails.ts"

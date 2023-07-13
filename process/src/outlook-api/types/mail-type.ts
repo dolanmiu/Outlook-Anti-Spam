@@ -42,17 +42,13 @@ export interface Body {
   content: string;
 }
 
-export enum ContentType {
-  HTML = "html",
-}
+export type ContentType = "html";
 
 export interface Flag {
   flagStatus: FlagStatus;
 }
 
-export enum FlagStatus {
-  NotFlagged = "notFlagged",
-}
+export type FlagStatus = "notFlagged";
 
 export interface From {
   emailAddress: EmailAddress;
@@ -63,11 +59,6 @@ export interface EmailAddress {
   address: string;
 }
 
-export enum Importance {
-  Normal = "normal",
-}
+export type Importance = "normal";
 
-export enum InferenceClassification {
-  Focused = "focused",
-  Other = "other",
-}
+export type InferenceClassification = "focused" | "other";

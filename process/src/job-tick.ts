@@ -20,7 +20,6 @@ export const jobTick = async () => {
   }
 
   const mails = await getEmails(authDetails);
-
   const newMail = getNewMail(deserialize(), mails.value);
 
   for (const mail of newMail) {

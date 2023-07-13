@@ -1,0 +1,48 @@
+import { describe, expect, it, vi } from "vitest";
+
+import { TICK_EMAIL } from "./__mocks__/emails/tick-email.js";
+import { jobTick } from "./job-tick.js";
+import { Mail, MailResponse } from "./outlook-api/types/mail-type.js";
+
+vi.mock("./auth-details.js", () => ({
+  getAuthDetails: () => ({
+    clientId: "clientId",
+    clientSecret: "clientSecret",
+    refreshToken: "refreshToken",
+    accessToken: "accessToken",
+    expiresAt: 0,
+  }),
+}));
+
+vi.mock("./outlook-api/get-emails.js", () => ({
+  getEmails: vi.fn<[], Promise<MailResponse>>().mockResolvedValue({
+    "@odata.context": "",
+    value: [TICK_EMAIL],
+    "@odata.nextLink": "",
+  }),
+}));
+
+vi.mock("./serializer.js", () => ({
+  deserialize: vi.fn(),
+  getNewMail: vi.fn<[], Mail[]>().mockReturnValue([TICK_EMAIL]),
+  serialize: vi.fn(),
+}));
+const serializerModule = await import("./serializer.js");
+
+vi.mock("./outlook-api/move-email.js", () => ({
+  moveEmail: vi.fn(),
+}));
+const moveModule = await import("./outlook-api/move-email.js");
+
+describe("job-tick", () => {
+  it("should work with tick spam", async () => {
+    vi.spyOn(serializerModule, "getNewMail").mockReturnValue([TICK_EMAIL]);
+    const spy = vi.spyOn(moveModule, "moveEmail");
+    await jobTick();
+    expect(spy).toHaveBeenCalledWith(
+      expect.anything(),
+      TICK_EMAIL,
+      "junkemail",
+    );
+  });
+});
