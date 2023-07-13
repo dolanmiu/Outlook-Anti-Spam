@@ -94,7 +94,8 @@ const addressFromBlackList = (mail: Mail) => {
   return (
     mail.from.emailAddress.address.endsWith("@gmail.com") ||
     mail.from.emailAddress.address.endsWith("@yahoo.com") ||
-    mail.from.emailAddress.address.endsWith("toiawaseform.com")
+    mail.from.emailAddress.address.endsWith("toiawaseform.com") ||
+    mail.from.emailAddress.address.endsWith("@sacloaves.org")
   );
 };
 
