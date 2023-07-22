@@ -24,16 +24,19 @@ export const hasImitatedEnglishCharacters = (input: string): boolean => {
   const smallCapitalCompatibilityPattern = /[\ufb00-\ufb06\ufe70-\ufeff]/;
 
   // Define a regular expression pattern to match Chinese characters similar to English letters.
-  const chineseCharactersPattern = /[\u62C2-\u62C9\u62CB-\u62CC]/;
+  const chineseCharactersPattern = /[\u15B0-\u15FF]/;
 
   // Define a regular expression pattern to match Greek letters that resemble English letters.
-  const greekLettersPattern = /[\u0391\u0392\u0393\u0394\u03A1\u03A2]/;
+  const greekLettersPattern = /[\u0391-\u03A2]/;
 
   // Define a regular expression pattern to match Cyrillic characters that resemble English letters.
-  const cyrillicLettersPattern = /[\u0421\u0420\u0422\u0425\u0425]/;
+  const cyrillicLettersPattern = /[\u0421-\u0425]/;
 
   // Define a regular expression pattern to match common ligatures like "æ" or "œ".
   const ligaturesPattern = /[\u00E6\u0153]/;
+
+  // Define a regular expression pattern to match characters from the Phonetic Extensions (Latin characters).
+  const phoneticExtensionsPattern = /[\u0250-\u02AF]/;
 
   // Test if the input string contains any character that matches any of the individual patterns.
   // If any character from these scripts is found in the input, the test will return true, indicating the presence of imitated English characters.
@@ -49,6 +52,7 @@ export const hasImitatedEnglishCharacters = (input: string): boolean => {
     chineseCharactersPattern.test(input) ||
     greekLettersPattern.test(input) ||
     cyrillicLettersPattern.test(input) ||
-    ligaturesPattern.test(input)
+    ligaturesPattern.test(input) ||
+    phoneticExtensionsPattern.test(input)
   );
 };
