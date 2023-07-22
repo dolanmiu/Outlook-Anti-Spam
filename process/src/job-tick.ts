@@ -3,6 +3,7 @@ import { getAuthDetails } from "./auth-details.js";
 import {
   dashSpam,
   fromMyselfSpam,
+  imitatedEnglishSpam,
   inlineImageSpam,
   isImageSpamMail,
   isTextSpamMail,
@@ -30,7 +31,8 @@ export const jobTick = async () => {
       dashSpam(mail) ||
       tickSpam(mail) ||
       singularDashSpam(mail) ||
-      fromMyselfSpam(mail);
+      fromMyselfSpam(mail)
+      imitatedEnglishSpam(mail);
     if (reason) {
       moveEmail(authDetails, mail, "junkemail");
       console.log("Moved spam mail to junk email:", mail.subject);

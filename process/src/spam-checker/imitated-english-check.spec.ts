@@ -95,6 +95,6 @@ describe("hasImitatedEnglishCharacters", () => {
 //   });
 
   it("should work", () => {
-    expect(hasImitatedEnglishCharacters("Regular normal text: Hello World")).toBe(false);
+    expect(hasImitatedEnglishCharacters("Regular normal text: Hello World!")).toBe(false);
   });
 });

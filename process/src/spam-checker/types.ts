@@ -5,4 +5,5 @@ export enum SpamFilterType {
   Dash = "dash",
   SingularDash = "singular-dash",
   FromMyself = "from-myself",
+  ImitatedEnglish = "imitated-english",
 }

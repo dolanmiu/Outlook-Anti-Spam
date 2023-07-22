@@ -1,4 +1,5 @@
 import { Mail } from "../outlook-api/types/mail-type.js";
+import { hasImitatedEnglishCharacters } from "./imitated-english-check.js";
 import { SpamFilterType } from "./types.js";
 
 export const isImageSpamMail = (mail: Mail): SpamFilterType | undefined => {
@@ -66,6 +67,14 @@ export const tickSpam = (mail: Mail): SpamFilterType | undefined => {
     mail.from.emailAddress.name.includes("☑")
   ) {
     return SpamFilterType.Dash;
+  } else {
+    return;
+  }
+};
+
+export const imitatedEnglishSpam = (mail: Mail): SpamFilterType | undefined => {
+  if (hasImitatedEnglishCharacters(mail.subject)) {
+    return SpamFilterType.ImitatedEnglish;
   } else {
     return;
   }
