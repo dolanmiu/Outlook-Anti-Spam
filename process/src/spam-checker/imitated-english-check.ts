@@ -38,6 +38,9 @@ export const hasImitatedEnglishCharacters = (input: string): boolean => {
   // Define a regular expression pattern to match characters from the Phonetic Extensions (Latin characters).
   const phoneticExtensionsPattern = /[\u0250-\u02AF]/;
 
+  // Define a regular expression pattern to match Latin characters with modifiers (superscripts and subscripts).
+  const latinCharactersWithModifiersPattern = /[\u207F\u1D2C-\u1D61]/;
+
   // Test if the input string contains any character that matches any of the individual patterns.
   // If any character from these scripts is found in the input, the test will return true, indicating the presence of imitated English characters.
   return (
@@ -53,6 +56,7 @@ export const hasImitatedEnglishCharacters = (input: string): boolean => {
     greekLettersPattern.test(input) ||
     cyrillicLettersPattern.test(input) ||
     ligaturesPattern.test(input) ||
-    phoneticExtensionsPattern.test(input)
+    phoneticExtensionsPattern.test(input) ||
+    latinCharactersWithModifiersPattern.test(input)
   );
 };
