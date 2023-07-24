@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { TICK_EMAIL } from "./__mocks__/emails/tick-email.js";
+import { ODD_FONT_EMAIL } from "./__mocks__/emails/odd-font-email.js";
 import { jobTick } from "./job-tick.js";
 import { Mail, MailResponse } from "./outlook-api/types/mail-type.js";
 
@@ -42,6 +43,17 @@ describe("job-tick", () => {
     expect(spy).toHaveBeenCalledWith(
       expect.anything(),
       TICK_EMAIL,
+      "junkemail",
+    );
+  });
+
+  it("should work with odd font email spam", async () => {
+    vi.spyOn(serializerModule, "getNewMail").mockReturnValue([ODD_FONT_EMAIL]);
+    const spy = vi.spyOn(moveModule, "moveEmail");
+    await jobTick();
+    expect(spy).toHaveBeenCalledWith(
+      expect.anything(),
+      ODD_FONT_EMAIL,
       "junkemail",
     );
   });

@@ -31,7 +31,7 @@ export const jobTick = async () => {
       dashSpam(mail) ||
       tickSpam(mail) ||
       singularDashSpam(mail) ||
-      fromMyselfSpam(mail)
+      fromMyselfSpam(mail) ||
       imitatedEnglishSpam(mail);
     if (reason) {
       moveEmail(authDetails, mail, "junkemail");
