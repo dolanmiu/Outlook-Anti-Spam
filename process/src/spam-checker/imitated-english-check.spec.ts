@@ -13,7 +13,6 @@ describe("hasImitatedEnglishCharacters", () => {
     expect(hasImitatedEnglishCharacters("ᑕ")).toBe(true);
     expect(hasImitatedEnglishCharacters("ᗩ")).toBe(true);
     expect(hasImitatedEnglishCharacters("ᖴ")).toBe(true);
-
   });
 
   it("should work", () => {
@@ -62,13 +61,13 @@ describe("hasImitatedEnglishCharacters", () => {
     expect(hasImitatedEnglishCharacters("ǎ")).toBe(true);
   });
 
-//   it("should work", () => {
-//     expect(hasImitatedEnglishCharacters("ϭ")).toBe(true);
-//   });
+  //   it("should work", () => {
+  //     expect(hasImitatedEnglishCharacters("ϭ")).toBe(true);
+  //   });
 
-//   it("should work", () => {
-//     expect(hasImitatedEnglishCharacters("д")).toBe(true);
-//   });
+  //   it("should work", () => {
+  //     expect(hasImitatedEnglishCharacters("д")).toBe(true);
+  //   });
 
   it("should work", () => {
     expect(hasImitatedEnglishCharacters("ℓΩ℧ℵℶℷℸℼℽℾ")).toBe(true);
@@ -90,11 +89,13 @@ describe("hasImitatedEnglishCharacters", () => {
     expect(hasImitatedEnglishCharacters("ⁱ⁰ⁿ⁺⁻⁼⁽⁾ⁿᵖ")).toBe(true);
   });
 
-//   it("should work", () => {
-//     expect(hasImitatedEnglishCharacters("⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯")).toBe(true);
-//   });
+  //   it("should work", () => {
+  //     expect(hasImitatedEnglishCharacters("⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯")).toBe(true);
+  //   });
 
   it("should work", () => {
-    expect(hasImitatedEnglishCharacters("Regular normal text: Hello World!")).toBe(false);
+    expect(
+      hasImitatedEnglishCharacters("Regular normal text: Hello World!"),
+    ).toBe(false);
   });
 });

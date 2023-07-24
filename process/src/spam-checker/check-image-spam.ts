@@ -73,7 +73,11 @@ export const tickSpam = (mail: Mail): SpamFilterType | undefined => {
 };
 
 export const imitatedEnglishSpam = (mail: Mail): SpamFilterType | undefined => {
-  if (hasImitatedEnglishCharacters(mail.subject)) {
+  if (
+    hasImitatedEnglishCharacters(mail.subject) ||
+    hasImitatedEnglishCharacters(mail.sender.emailAddress.name) ||
+    hasImitatedEnglishCharacters(mail.from.emailAddress.name)
+  ) {
     return SpamFilterType.ImitatedEnglish;
   } else {
     return;
