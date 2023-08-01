@@ -37,7 +37,6 @@ export const jobTick = async () => {
       moveEmail(authDetails, mail, "junkemail");
       console.log("Moved spam mail to junk email:", mail.subject);
       console.log("Reason:", reason);
-      console.log("Full mail:", mail);
     }
   }
 
