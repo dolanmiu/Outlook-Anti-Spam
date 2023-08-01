@@ -24,7 +24,8 @@ export const hasImitatedEnglishCharacters = (input: string): boolean => {
   const smallCapitalCompatibilityPattern = /[\ufb00-\ufb06\ufe70-\ufeff]/;
 
   // Define a regular expression pattern to match Chinese characters similar to English letters.
-  const chineseCharactersPattern = /[\u15B0-\u15FF]/;
+  // Too many false positives, so we're not using this pattern.
+  // const chineseCharactersPattern = /[\u15B0-\u15FF]/;
 
   // Define a regular expression pattern to match Greek letters that resemble English letters.
   const greekLettersPattern = /[\u0391-\u03A2]/;
@@ -77,7 +78,7 @@ export const hasImitatedEnglishCharacters = (input: string): boolean => {
     arabicPresentationFormsBPattern.test(input) ||
     halfwidthFullwidthFormsPattern.test(input) ||
     smallCapitalCompatibilityPattern.test(input) ||
-    chineseCharactersPattern.test(input) ||
+    // chineseCharactersPattern.test(input) ||
     greekLettersPattern.test(input) ||
     cyrillicLettersPattern.test(input) ||
     ligaturesPattern.test(input) ||

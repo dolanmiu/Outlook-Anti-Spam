@@ -98,4 +98,21 @@ describe("hasImitatedEnglishCharacters", () => {
       hasImitatedEnglishCharacters("Regular normal text: Hello World!"),
     ).toBe(false);
   });
+
+  it("should work", () => {
+    expect(
+      hasImitatedEnglishCharacters("𝘕𝘦𝘸 𝘚𝘬𝘪𝘯𝘯𝘺 𝘗𝘪𝘭𝘭 𝘒𝘪𝘭𝘭𝘴 𝘛𝘰𝘰 𝘔𝘶𝘤𝘩 𝘍𝘢𝘵"),
+    ).toBe(true);
+    expect(hasImitatedEnglishCharacters("𝙖𝙙𝙫𝙖𝙣𝙘𝙚𝙙 𝙣𝙖𝙩𝙪𝙧𝙖𝙡 𝙥𝙖𝙞𝙣 𝙧𝙚𝙡𝙞𝙚𝙛")).toBe(
+      true,
+    );
+    expect(
+      hasImitatedEnglishCharacters("𝙉𝙚𝙬 𝙎𝙠𝙞𝙣𝙣𝙮 𝙋𝙞𝙡𝙡 𝙆𝙞𝙡𝙡𝙨 𝙏𝙤𝙤 𝙈𝙪𝙘𝙝 𝙁𝙖𝙩"),
+    ).toBe(true);
+    expect(
+      hasImitatedEnglishCharacters("𝐍𝐞𝐰 𝐒𝐤𝐢𝐧𝐧𝐲 𝐏𝐢𝐥𝐥 𝐊𝐢𝐥𝐥𝐬 𝐓𝐨𝐨 𝐌𝐮𝐜𝐡 𝐅𝐚𝐭"),
+    ).toBe(true);
+    // Todo
+    // expect(hasImitatedEnglishCharacters("Mιrᥲᥴᥣᥱ CBD Gᥙmmιᥱs")).toBe(true);
+  });
 });
