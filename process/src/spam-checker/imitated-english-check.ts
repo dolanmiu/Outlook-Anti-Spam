@@ -1,4 +1,13 @@
-export const hasImitatedEnglishCharacters = (input: string): boolean => {
+export const hasImitatedEnglishCharacters = (
+  input: string,
+  overrides: string[] = [],
+): boolean => {
+  for (const override of overrides) {
+    if (input.includes(override)) {
+      return false;
+    }
+  }
+
   // Define a regular expression pattern to match characters from the Arabic script (Arabic).
   const arabicPattern = /[\u0600-\u06FF]/;
 

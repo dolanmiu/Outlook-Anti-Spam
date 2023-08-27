@@ -5,9 +5,10 @@ import { MailResponse } from "./types/mail-type.js";
 
 export const getEmails = async (
   authDetails: AuthDetails,
+  folder: string = "inbox",
 ): Promise<MailResponse> => {
   const res = await axios.get<MailResponse>(
-    `https://graph.microsoft.com/v1.0/me/mailFolders/inbox/messages`,
+    `https://graph.microsoft.com/v1.0/me/mailFolders/${folder}/messages`,
     {
       headers: {
         Authorization: `Bearer ${authDetails.accessToken}`,

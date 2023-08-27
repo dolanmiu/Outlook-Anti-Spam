@@ -74,7 +74,7 @@ export const tickSpam = (mail: Mail): SpamFilterType | undefined => {
 
 export const imitatedEnglishSpam = (mail: Mail): SpamFilterType | undefined => {
   if (
-    hasImitatedEnglishCharacters(mail.subject) ||
+    hasImitatedEnglishCharacters(mail.subject, ["收到新反馈！"]) ||
     hasImitatedEnglishCharacters(mail.sender.emailAddress.name) ||
     hasImitatedEnglishCharacters(mail.from.emailAddress.name)
   ) {

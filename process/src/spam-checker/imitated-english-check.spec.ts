@@ -99,6 +99,18 @@ describe("hasImitatedEnglishCharacters", () => {
     ).toBe(false);
   });
 
+  it("should not filter Miu Aquatics", () => {
+    expect(
+      hasImitatedEnglishCharacters("Miu Aquatics - New Feedback! 收到新反馈！"),
+    ).toBe(true);
+    expect(
+      hasImitatedEnglishCharacters(
+        "Miu Aquatics - New Feedback! 收到新反馈！",
+        ["收到新反馈！"],
+      ),
+    ).toBe(false);
+  });
+
   it("should work", () => {
     expect(
       hasImitatedEnglishCharacters("𝘕𝘦𝘸 𝘚𝘬𝘪𝘯𝘯𝘺 𝘗𝘪𝘭𝘭 𝘒𝘪𝘭𝘭𝘴 𝘛𝘰𝘰 𝘔𝘶𝘤𝘩 𝘍𝘢𝘵"),

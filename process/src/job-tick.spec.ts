@@ -6,6 +6,7 @@ import { jobTick } from "./job-tick.js";
 import { Mail, MailResponse } from "./outlook-api/types/mail-type.js";
 import { IMAGE_EMAIL } from "./__mocks__/emails/image-email.js";
 import { BRACKET_EMAIL_1 } from "./__mocks__/emails/bracket-email.js";
+import { MIU_AQUATICS_EMAIL } from "./__mocks__/emails/miu-aquatics-email.js";
 
 vi.mock("./auth-details.js", () => ({
   getAuthDetails: () => ({
@@ -80,5 +81,14 @@ describe("job-tick", () => {
       BRACKET_EMAIL_1,
       "junkemail",
     );
+  });
+
+  it("should not filter Miu Aquatics Email", async () => {
+    vi.spyOn(serializerModule, "getNewMail").mockReturnValue([
+      MIU_AQUATICS_EMAIL,
+    ]);
+    const spy = vi.spyOn(moveModule, "moveEmail");
+    await jobTick();
+    expect(spy).not.toHaveBeenCalled();
   });
 });
